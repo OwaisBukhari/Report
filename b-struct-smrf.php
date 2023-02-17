@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "report");
+$conn = new mysqli("localhost", "root", "", "erd-of-seismic");
 
 $result = mysqli_query($conn, "SELECT * FROM `smrf`");
 
