@@ -159,7 +159,14 @@ $conn = new mysqli("localhost", "root", "", "erd-of-seismic");
     # // Connect to the database
     #  $conn = mysqli_connect("hostname", "username", "password", "database_name");
     #  Query the database
-    $result = mysqli_query($conn, "SELECT * FROM `haz-ident` WHERE `id`='80'");
+$result = mysqli_query($conn, "SELECT * FROM `haz-ident`");
+
+$num= mysqli_num_rows($result);
+
+
+if($num>0)
+{
+
     // Fetch the results
     $hazident=array();
     while($row = mysqli_fetch_assoc($result)){
@@ -442,16 +449,20 @@ $conn = new mysqli("localhost", "root", "", "erd-of-seismic");
 
        
 
-    }
-
-    $sum= 0;
-    
+$id=$row['id'];
+$sum= 0;
 foreach ($hazident as $number) {
   $sum += $number;
 }
-echo $sum."==this is the sum------";
+// echo $sum."==this is the sum------";
+// print_r($hazident);
+// echo"<br>";
 
+$query2="UPDATE `haz-ident` SET `sum`='$sum' WHERE id=$id";
+$result1=mysqli_query($conn, $query2);
 
+    }
+}
 
 #  $list=array();
 # for ($i = 0; $i < 10; $i++) {
@@ -461,15 +472,58 @@ echo $sum."==this is the sum------";
 # }
 # print_r($list);
 # echo($list[5]);
-print_r($hazident);
 # echo();
 
 
+?>
 
 
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="coding.css">
+</head>
 
+<body>
+    <form action="" method="POST">
+        <h1>Hazard Identification</h1>
+        <label for="userhosbuild">Enter userhosp value : </label>
+        <input type="text" name="user" id="user">
+        <br> <br>
+        <button type="submit" value="submit" name="submit">Send Data</button>
+        <br>
+    </form>
+    <br>
+  
 
+</body>
 
+</html>
+
+<?php
+
+if(isset($_POST['submit']))
+{
+    $value=$_POST['user'];
+    $result2 = mysqli_query($conn, "SELECT `sum`  FROM `haz-ident` WHERE userhosp='$value'"); //userhosp in db instead of userhosbuild
+    echo $value;
+    echo "<br>";
+    $toresult = $result2->fetch_array()[0] ?? '';
+    if($toresult>= 0)
+    {
+        echo '<strong>Total Sum:  </strong>'.$toresult;
+    }
+    else{
+        echo "No similar match found";
+    }
+    
+}
 
 ?>
+
+

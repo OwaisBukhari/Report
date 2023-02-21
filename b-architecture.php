@@ -5,8 +5,6 @@ $conn = new mysqli("localhost", "root", "", "erd-of-seismic");
 $result = mysqli_query($conn, "SELECT * FROM `buidlingarchitectural`");
 
 $num= mysqli_num_rows($result);
-echo "total rows:$num";
-echo"<br> <br>";
 
 if($num>0)
 {
@@ -312,41 +310,69 @@ while($row = mysqli_fetch_assoc($result))
 
     }
 
-
+$id=$row['id'];
 $sum= 0;
     
 foreach ($b_archit as $number) {
   $sum += $number;
 }
-echo $sum."==this is the sum------";
-print_r($b_archit);
-echo "<br> <br>";
+// echo $sum."==this is the sum------";
+// print_r($b_archit);
+// echo "<br> <br>";
+
+$query2="UPDATE `buidlingarchitectural` SET `sum`='$sum' WHERE id=$id";
+$result1=mysqli_query($conn, $query2);
 }
 }
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- if($key=="")
-        {
-            if(strtolower($value)=="yes"){
-                $b_hazident[""]=;
-            }else{
-                $b_hazident[""]=;
-            }
-        }
-        if($key=="")
-        {
-           if(strtolower($value=='poor'))
-           {
-               $b_hazident[""]=;
-           }
-           elseif(strtolower($value=='average'))
-           {
-               $b_hazident[""]=;
-           }
-           elseif(strtolower($value=='good'))
-           {
-               $b_hazident[""]=;
-           }
-        } -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="coding.css">
+</head>
+
+<body>
+    <h1>Buidling Architectural</h1>
+    <form action="" method="POST">
+        <label for="userhosbuild">Enter userhosbuild value : </label>
+        <input type="text" name="user" id="user">
+        <br><br>
+        <button type="submit" value="submit" name="submit">Send Data</button>
+        <br>
+    </form>
+    <br>
+  
+
+</body>
+
+</html>
+
+<?php
+
+if(isset($_POST['submit']))
+{
+    $value=$_POST['user'];
+    $result2 = mysqli_query($conn, "SELECT `sum`  FROM `buidlingarchitectural` WHERE userhosbuild='$value'");
+    echo $value;
+    echo "<br>";
+    $toresult = $result2->fetch_array()[0] ?? '';
+    
+    if($toresult>= 0)
+    {
+        echo '<strong>Total Sum:  </strong>'.$toresult;
+    }
+    else{
+        echo "No similar match found";
+    }
+    
+}
+
+?>
+

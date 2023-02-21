@@ -449,9 +449,10 @@ while($row = mysqli_fetch_assoc($result))
 
 <body>
     <form action="" method="POST">
+        <h1>Building Hazard Identification</h1>
         <label for="userhosbuild">Enter userhosbuild value : </label>
         <input type="text" name="user" id="user">
-        <br>
+        <br> <br>
         <button type="submit" value="submit" name="submit">Send Data</button>
         <br>
     </form>
@@ -471,7 +472,7 @@ if(isset($_POST['submit']))
     echo $value;
     echo "<br>";
     $toresult = $result2->fetch_array()[0] ?? '';
-    if($toresult)
+    if($toresult >= 0)
     {
         echo '<strong>Total Sum:  </strong>'.$toresult;
     }

@@ -5,8 +5,7 @@ $result = mysqli_query($conn, "SELECT * FROM `urm` ");
 
 
 $num= mysqli_num_rows($result);
-echo "total rows:$num";
-echo"<br> <br>";
+
 
 if($num>0)
 {
@@ -507,63 +506,65 @@ while($row = mysqli_fetch_assoc($result))
         
     }
 
-
+$id=$row['id'];
 $sum= 0;
 foreach ($b_urm as $number){
   $sum += $number;
 }
-echo $sum."==this is the sum------";
-print_r($b_urm);
-echo "<br> <br>";
+
+$query2="UPDATE `urm` SET `sum`='$sum' WHERE id=$id";
+$result1=mysqli_query($conn, $query2);
 }
 }
 
 ?>
 
-<!-- if($key=="")
-        {
-            if(strtolower($value)=="yes"){
-                $b_urm[""]=;
-            }else{
-                $b_urm[""]=;
-            }
-        }
-        if($key=="")
-        {
-           if(strtolower($value=='poor'))
-           {
-               $b_urm[""]=;
-           }
-           elseif(strtolower($value=='average'))
-           {
-               $b_urm[""]=;
-           }
-           elseif(strtolower($value=='good'))
-           {
-               $b_urm[""]=;
-           }
-        } 
-    -->
 
-    <!-- 
-        if($key=="")
-        {
-           if(strtolower($value=='minor'))
-           {
-               $b_urm[""]=2;
-           }
-           elseif(strtolower($value=='moderate'))
-           {
-               $b_urm[""]=4;
-           }
-           elseif(strtolower($value=='severe'))
-           {
-               $b_urm[""]=8;
-           }
-           elseif(strtoupper($value=='NA'))
-           {
-              $b_urm[""]=0;
-           }
-        } 
-       
-     -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="coding.css">
+</head>
+
+<body>
+    <form action="" method="POST">
+        <h1>Building Structure-URM</h1>
+        <label for="userhosbuild">Enter userhosbuild value : </label>
+        <input type="text" name="user" id="user">
+        <br> <br>
+        <button type="submit" value="submit" name="submit">Send Data</button>
+        <br>
+    </form>
+    <br>
+  
+
+</body>
+
+</html>
+
+<?php
+
+if(isset($_POST['submit']))
+{
+    $value=$_POST['user'];
+    $result2 = mysqli_query($conn, "SELECT `sum`  FROM `urm` WHERE userhosbuild='$value'");
+    echo $value;
+    echo "<br>";
+    $toresult = $result2->fetch_array()[0] ?? '';
+    if($toresult>= 0)
+    {
+        echo '<strong>Total Sum:  </strong>'.$toresult;
+    }
+    else{
+        echo "No similar match found";
+    }
+    
+}
+
+?>

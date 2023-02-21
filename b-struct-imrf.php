@@ -4,8 +4,6 @@ $conn = new mysqli("localhost", "root", "", "erd-of-seismic");
 $result = mysqli_query($conn, "SELECT * FROM `intrf` ");
 
 $num= mysqli_num_rows($result);
-echo "total rows:$num";
-echo"<br>";
 
 if($num>0)
 {
@@ -1138,67 +1136,71 @@ while($row = mysqli_fetch_assoc($result))
            }
         } 
     }
-
+$id=$row['id'];
 $sum= 0;
 foreach ($b_imrf as $number){
   $sum += $number;
 }
-echo $sum."==this is the sum------";
-print_r($b_imrf);
-echo "<br> <br>";
+// echo $sum."==this is the sum------";
+// print_r($b_imrf);
+// echo "<br> <br>";
+
+$query2="UPDATE `intrf` SET `sum`='$sum' WHERE id=$id";
+$result1=mysqli_query($conn, $query2);
 
 }
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="coding.css">
+</head>
+
+<body>
+    <form action="" method="POST">
+        <h1>Building Structure-IMRF</h1>
+        <label for="userhosbuild">Enter userhosbuild value : </label>
+        <input type="text" name="user" id="user">
+        <br>
+        <button type="submit" value="submit" name="submit">Send Data</button>
+        <br>
+    </form>
+    <br>
+  
+
+</body>
+
+</html>
+
+<?php
+
+if(isset($_POST['submit']))
+{
+    $value=$_POST['user'];
+    $result2 = mysqli_query($conn, "SELECT `sum`  FROM `intrf` WHERE userhosbuild='$value'");
+    echo $value;
+    echo "<br>";
+    $toresult = $result2->fetch_array()[0] ?? '';
+    if($toresult>= 0)
+    {
+        echo '<strong>Total Sum:  </strong>'.$toresult;
+    }
+    else{
+        echo "No similar match found";
+    }
+    
+}
+
+?>
+
+
 <!-- db table not present
     soft story 
  -->
-
-<!-- if($key=="")
-        {
-            if(strtolower($value)=="yes"){
-                $b_imrf[""]=;
-            }else{
-                $b_imrf[""]=;
-            }
-        }
-        if($key=="")
-        {
-           if(strtolower($value=='poor'))
-           {
-               $b_imrf[""]=;
-           }
-           elseif(strtolower($value=='average'))
-           {
-               $b_imrf[""]=;
-           }
-           elseif(strtolower($value=='good'))
-           {
-               $b_imrf[""]=;
-           }
-        } 
-    -->
-
-    <!-- 
-        if($key=="")
-        {
-           if(strtolower($value=='minor'))
-           {
-               $b_imrf[""]=2;
-           }
-           elseif(strtolower($value=='moderate'))
-           {
-               $b_imrf[""]=4;
-           }
-           elseif(strtolower($value=='severe'))
-           {
-               $b_imrf[""]=8;
-           }
-           elseif(strtoupper($value=='NA'))
-           {
-              $b_imrf[""]=0;
-           }
-        } 
-       
-     -->
