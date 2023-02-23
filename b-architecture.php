@@ -348,14 +348,11 @@ $result1=mysqli_query($conn, $query2);
         <br>
     </form>
     <br>
-  
 
 </body>
-
 </html>
 
 <?php
-
 if(isset($_POST['submit']))
 {
     $value=$_POST['user'];
