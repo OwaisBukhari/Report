@@ -643,7 +643,7 @@ $result1=mysqli_query($conn, $query2);
 
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -689,4 +689,4 @@ if(isset($_POST['submit']))
     
 }
 
-?>
+?> -->

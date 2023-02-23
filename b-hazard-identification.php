@@ -436,7 +436,7 @@ while($row = mysqli_fetch_assoc($result))
 
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -482,7 +482,7 @@ if(isset($_POST['submit']))
     
 }
 
-?>
+?> -->
 
 
 <!-- sloping site -->

@@ -1,3 +1,14 @@
+<?php include 'b-architecture.php'?>
+<?php include 'b-hazard-identification.php'?>
+<?php include 'b-struct-imrf.php'?>
+<?php include 'b-struct-omrf.php'?>
+<?php include 'b-struct-rm.php'?>
+<?php include 'b-struct-smrf.php'?>
+<?php include 'b-struct-urm.php'?>
+<?php include 'upload.php'?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,11 +74,22 @@ if(isset($_POST['submit']))
     if($toresult1>=0 || $toresult2>=0 || $toresult3>=0 || $toresult4>=0 || $toresult5>=0 || $toresult6>=0 || $toresult7>=0 || $toresult8>=0)
     { 
         ?>
-        <div style="margin: 0 auto; width:200px; height:40px; margin-top:50px; background-color:rgb(219, 215, 210); padding:20px;border-radius:10px">
+        <div style="margin: 0 auto; width:330px; height:210px; margin-top:50px; background-color:rgb(219, 215, 210); padding:20px;border-radius:10px">
         <?php
-        echo '<strong>For user  :  </strong>'.$value;
+        echo '<strong>For user&nbsp &nbsp:  </strong>'.$value;
         echo "<br>";
-        echo '<strong>Total Sum:  </strong>'.$sum;
+        echo '<strong>Total Sum:  </strong>'.$sum; echo "<br> <br>";
+        echo '<strong>Building Hazard Identifiaction Sum:  </strong>'.(int)$toresult1; echo "<br>";
+        echo '<strong>Building Architecture Sum &nbsp &nbsp &nbsp &nbsp: </strong>'.(int)$toresult2; echo "<br>";
+        echo '<strong>Building Structure IMRF Sum  &nbsp:  </strong>'.(int)$toresult3; echo "<br>";
+        echo '<strong>Building Structure OMRF Sum :  </strong>'.(int)$toresult4; echo "<br>";
+        echo '<strong>Building Structure RM  Sum &nbsp &nbsp &nbsp:  </strong>'.(int)$toresult5; echo "<br>";
+        echo '<strong>Building Structure SMRF Sum&nbsp:  </strong>'.(int)$toresult6; echo "<br>";
+        echo '<strong>Building Structure URM Sum  &nbsp&nbsp:  </strong>'.(int)$toresult7; echo "<br>";
+        echo '<strong>Hazard Identification Sum&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:  </strong>'.(int)$toresult8; echo "<br>";
+        
+  
+      
         ?>
 
         </div>

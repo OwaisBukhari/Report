@@ -24,7 +24,7 @@ foreach($_FILES as $file_name => $file_array){
 
 ?>
 
-# <!DOCTYPE html>
+<!-- # <!DOCTYPE html>
 # <html lang="en">
 # <head>
 #     <meta charset="UTF-8">
@@ -80,7 +80,7 @@ foreach($_FILES as $file_name => $file_array){
 #         </div>
 #     </form>
 # </body>
-# </html> -->
+# </html> --> 
 
 <?php
 
@@ -478,7 +478,7 @@ $result1=mysqli_query($conn, $query2);
 ?>
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -524,6 +524,6 @@ if(isset($_POST['submit']))
     
 }
 
-?>
+?> -->
 
 
